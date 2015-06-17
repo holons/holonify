@@ -1,6 +1,6 @@
 {
   "name": "holonify",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Holonify web development - Combining the power of npm, browserify & reworkcss/postcss and more to build small, fully encapsulated client side modules",
   "main": "SOURCE/index.js",
   "browserify": {

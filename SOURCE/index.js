@@ -50,9 +50,9 @@ var env         = {
       "output"        : "BUNDLE/bundle.js",
       "debug"         : false,
       "watch"         : false,
-      "transform": [ // maybe GLOBAL OPTION
-        "babelify",
-        "envlocalify"
+      "transform": [
+        "./node_modules/holonify/node_modules/babelify",
+        "./node_modules/holonify/node_modules/envlocalify"
       ],
       "standalone": "API"
     },
@@ -64,8 +64,8 @@ var env         = {
       "watch"         : true,
       "fullPaths"     : true,
       "transform": [
-        "babelify",
-        "envlocalify"
+        "./node_modules/holonify/node_modules/babelify",
+        "./node_modules/holonify/node_modules/envlocalify"
       ],
       "standalone": "API"
     }
