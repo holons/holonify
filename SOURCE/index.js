@@ -8,6 +8,7 @@ const path        = require('path');
 const method      = require('exemethod')(function(a,b){return b;});
 const subarg      = require('subarg');
 const atomify     = require('atomify');
+const corsproxy   = require('cors-anywhere');
 /******************************************************************************
   PARAMETER = ARGUMENT
 ******************************************************************************/
@@ -44,24 +45,24 @@ var env         = {
   }[mode],
   js              : {
     production      : {
-      "entry": pkg.main || 'index.js',
-      "alias": "BUNDLE/bundle.js",
-      "output": "BUNDLE/bundle.js",
-      "debug": false,
-      "watch": false,
+      "entry"         : pkg.main || 'index.js',
+      "alias"         : "BUNDLE/bundle.js",
+      "output"        : "BUNDLE/bundle.js",
+      "debug"         : false,
+      "watch"         : false,
       "transform": [ // maybe GLOBAL OPTION
         "babelify",
         "envlocalify"
       ],
       "standalone": "API"
     },
-    development     :  {
-      "entry": pkg.main || 'index.js',
-      "alias": "BUNDLE/bundle.js",
-      "output": "BUNDLE/bundle.js",
-      "debug": true,
-      "watch": true,
-      "fullPaths": true,
+    development     : {
+      "entry"         : pkg.main || 'index.js',
+      "alias"         : "BUNDLE/bundle.js",
+      "output"        : "BUNDLE/bundle.js",
+      "debug"         : true,
+      "watch"         : true,
+      "fullPaths"     : true,
       "transform": [
         "babelify",
         "envlocalify"
@@ -71,11 +72,11 @@ var env         = {
   }[mode],
   css             : {
     production      : {
-      "entry": pkg.style || 'index.css',
-      "alias": "BUNDLE/bundle.css",
-      "output": "BUNDLE/bundle.css",
-      "debug": false,
-      "watch": false,
+      "entry"         : pkg.style || '',
+      "alias"         : pkg.style ? "BUNDLE/bundle.css" : '',
+      "output"        : pkg.style ? "BUNDLE/bundle.css" : '',
+      "debug"         : false,
+      "watch"         : false,
       "autoprefixer": {
         "browsers": [
           "> 1%",
@@ -87,11 +88,11 @@ var env         = {
       "plugin": []
     },
     development     : {
-      "entry": pkg.style || 'index.css',
-      "alias": "BUNDLE/bundle.css",
-      "output": "BUNDLE/bundle.css",
-      "debug": true,
-      "watch": true,
+      "entry"         : pkg.style || '',
+      "alias"         : pkg.style ? "BUNDLE/bundle.css" : '',
+      "output"        : pkg.style ? "BUNDLE/bundle.css" : '',
+      "debug"         : true,
+      "watch"         : true,
       "autoprefixer": {
         "browsers": [
           "> 1%",
@@ -131,6 +132,14 @@ function cb (err, src, type) {
     // do something with CSS source bundle
   }
 }
+corsproxy.createServer({
+  requireHeader: ['origin', 'x-requested-with'],
+  removeHeaders: ['cookie', 'cookie2']
+}).listen(9966, '0.0.0.0', function() {
+  console.log('======================================================');
+  console.log('Running CORS (REVERSE) PROXY on http://localhost:9966/');
+  console.log('======================================================');
+});
 atomify(env, cb);
 // /******************************************************************************
 //   PIPE STREAM
