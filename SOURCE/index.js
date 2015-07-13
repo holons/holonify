@@ -6,19 +6,8 @@
 const os          = require('os');
 const path        = require('path');
 const method      = require('exemethod')(function(a,b){return b;});
-const subarg      = require('subarg');
 const atomify     = require('atomify');
 const corsproxy   = require('cors-anywhere');
-/******************************************************************************
-  PARAMETER = ARGUMENT
-******************************************************************************/
-var args          = subarg(process.argv.slice(2));
-function setInput (error/*, mode, string, filename*/) {
-  if (error) { throw error; }
-  // var $mode       = mode;
-  // var $string     = string;
-  // var $filename   = filename;
-}
 /******************************************************************************
   ENVIRONMENT - use: envlocalify
 ******************************************************************************/
@@ -28,7 +17,7 @@ var mode        = ((mode = {
   prod            : 'production',
   development     : 'development',
   dev             : 'development'
-}[args.mode]) ? mode : 'development');
+}[process.env.NODE_ENV]) ? mode : 'development');
 var env         = {
   server          : {
     production      : null,

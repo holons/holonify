@@ -8,10 +8,10 @@ You can specify `"main": "entryfilename.js"` and `"style" : "entryfilename.css"`
 $> npm install -g holonify
 
 # Run holonify in production mode which minifies "js" and "css" output
-$> holonify --mode=production
+$> NODE_ENV=production holonify
 
 # Run holonify in development mode:
-$> holonify --mode=development
+$> NODE_ENV=development holonify
 $> holonify
 
 ```
