@@ -1,6 +1,6 @@
 {
   "name": "holonify",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Holonify web development - Combining the power of npm, browserify & reworkcss/postcss and more to build small, fully encapsulated client side modules",
   "main": "SOURCE/index.js",
   "browserify": {
@@ -35,7 +35,6 @@
     "cors-anywhere": "^0.2.3",
     "envlocalify": "^1.1.0",
     "exemethod": "^1.2.4",
-    "resrcify": "^1.1.3",
-    "subarg": "^1.0.0"
+    "resrcify": "^1.1.3"
   }
 }
