@@ -40,8 +40,8 @@ var env         = {
       "debug"         : false,
       "watch"         : false,
       "transform": [
-        "./node_modules/holonify/node_modules/babelify",
-        "./node_modules/holonify/node_modules/envlocalify"
+        "babelify",
+        "envlocalify"
       ],
       "standalone": "API"
     },
@@ -53,8 +53,8 @@ var env         = {
       "watch"         : true,
       "fullPaths"     : true,
       "transform": [
-        "./node_modules/holonify/node_modules/babelify",
-        "./node_modules/holonify/node_modules/envlocalify"
+        "babelify",
+        "envlocalify"
       ],
       "standalone": "API"
     }
